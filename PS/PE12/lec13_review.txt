@@ -1,0 +1,185 @@
+(work by yourself but feel free to talk to your classmates and ask us questions)
+Turn this file in on moodle before the end of class.
+
+This review is meant to be a check-in with yourself. Which of the topics are you confident about? Which are you less confident about? What do you need to review?
+
+Name: Chakrya Ros
+
+Section 1: c++
+---------
+1. What is a reference? What is a pointer? How are they different?
+A reference is an alias that is  another name for an already exiting variable. A pointer is a variable that holds memory address of another variable. The different is that the reference can be thought of as constant pointer while the a pointer is a constant value.
+
+2. Given the following class definition, how would you call the method CalculateMysteries?
+
+
+class Foo {
+public:
+    Foo(int bar) : bar_(bar) {}
+
+    int CalculateMysteries();
+
+    static int TotalBars();
+
+private:
+    int bar_;
+
+    static int baz_;
+};
+int bar1;
+Foo foo1(bar1);
+foo1.CalculateMysteries();
+
+3. How would you call the method TotalBars()?
+
+Foo::TotalBars();
+
+4. Can you access the field bar_ from inside the method TotalBars()? Why/why not?
+No, we can't access to field bar_ from inside the method TotalBars because TotalBars() is static method and can't access from non-static field.
+
+5. Can you access the field baz_ from inside the method CalculateMysteries()? Why/why not?
+
+Yes, we can access the field bar from inside the CalculateMysteries() because static field can be accessed from non static methods.
+
+Section 2: Version control & git
+----------
+1. What is a branch? Why would you work on a non-master branch?
+A branch is a lightweight moveable pointer to one of these comments. Because we shared our files to other people working on and change and then git add and commit and push to the master
+
+2. If you are currently working on the branch my-fabulous-feature and your teammate merges another feature into master, what are the commands that you would run to switch to master, get the new code, switch back to your branch, and merge the new code from master into your branch?
+
+git checkout master, git pull origin master, git checkout my-fabulous, git merge master
+
+
+3. What is the difference between issuing a "git pull" and submitting a "pull request"?
+ git pull to just to update the new file into the local file and pull request to ask ask other branch to read and the approved what your branch changed
+
+4. When you're reviewing a PR, what are some concrete things that you should look for in the code that you're reviewing?
+
+look over the File Changed and understand what code is doing. I also make sure the code is readable.
+
+Section 3: bash
+------------
+1. What is your PS1?
+
+it's first of my prompt string.
+
+2. Rate your level of comfort working on the command line on a scale from "not comfortable at all" to "completely comfortable, I am a command line master". Be honest with yourself.
+medium
+3. If you are developing in an IDE (such as Sublime, CodeRunner, CodeBlocks, XCode, etc) and your project isn't compiling by pressing the "run/build" button, what steps should you take to remedy the issue?
+I should check compilation directly from the command line and use gdb debugger.
+
+Section 4: Unit testing/Catch2
+------------
+1. What is a TEST_CASE? What is a SECTION? What should each be used for? How many methods should be tested in each TEST_CASE? SECTION?
+
+TEST_CASE is set of test data , precondition, expected results and postcondition, developed for a particular test scenario in order to verify compliance against a specific requirement. 
+
+For each SECTIONS, TEST_CASE is ran from the start and then enter each sections that have 5 size. 
+
+It's depend on the class object method that should be tested in each TEST_CASE.
+
+Section 5: Design Patterns
+----------
+1. For each of the following design patterns, briefly describe what problem they solve and how they are implemented in c++.
+
+a. Singleton
+
+only 1 instance of an object, static Get Instance method.
+For example: Box object
+
+Box &box = Box::GetInstance();
+
+b. Flyweight is an object that minimizes memory usage by sharing as much data as possible with other similar object.
+The problem Flyweight can solve are:
+ - large numbers of object should be supported
+ - less number of object reduce the memory usage
+To implemented in c++, create one object of Tree and in the object of Tree create pointer of object of TreeModel
+Class Tree
+{
+private:
+	TreeModel* model;
+	
+	Vector position_;
+  	double height_;
+  	double thickness_;
+  	Color barkTint_;
+  	Color leafTint_;
+};
+c. Prototype is sample, model or release of a product build to test a concept or process or to act as a thing to be replicate;
+
+Prototype help to class object that clone to use in another class object
+For example class Animal
+{
+   public:
+	virtual ~Animal(){}
+	virtual Animal* clone() = 0;
+};
+
+class Cat : public Animal{
+	Cat(string name, string color);
+	virtual Cat *clone() {
+		return Cat(name, color);
+	}
+}
+
+
+d. Factory is a creational design pattern that users factory methods to deal with the problem of creating object without having to specify the exact class of the object that will be created.
+To solve the problem like how can an object be created so the subclasses can redefine which class is instantiate and how can a class defer instantiation to subclasses. 
+For example:
+
+class Disease {
+public:
+    Disease(std::string name,
+            bool is_communicable,
+            bool is_hereditary,
+            bool bacteria_based,
+            bool virus_based,
+            double strikes_young_rate, // between 0 (no chance) and 1 (always)
+            double strikes_old_rate,   // between 0 (no chance) and 1 (always)
+            double strikes_middle_aged_rate, // between 0 (no chance) and 1 (always)
+            double fatality_rate,
+            std::string location) :
+    name_(name),
+    is_communicable_(is_communicable),
+    is_hereditary_(is_hereditary),
+    bacteria_based_(bacteria_based),
+    virus_based_(virus_based),
+    strikes_young_rate_(strikes_young_rate),
+    strikes_old_rate_(strikes_old_rate),
+    strikes_middle_aged_rate_(strikes_middle_aged_rate),
+    fatality_rate_(fatality_rate),
+    location_(location)
+    {}
+}
+class DiseaseFactory {
+    
+public:
+    
+    DiseaseFactory();
+    
+    static Disease * GetFlu(){
+        
+        Disease * d = new Disease("Flu", true, false, false, true, 0.7, 0.7, 0.5, 0.01, "new location");
+        return d;
+        
+    };
+So we just use Disease object to implement Disease * GetGlu();
+
+e. Iterator is like a pointer object that can be incremented with++, dereferenced with * and compare against anther iterator with !=;
+To solve the problem, never pass container into a function, pass iterators instead and return or pass iterator instead.
+
+Example:
+	vector<int> vec;
+	vector<int>::iterator it;
+ 
+	vec.push_back(1);
+	vec.push_back(2);
+	vec.push_back(3);
+	
+	for (it = vec.begin(); it != vec.end(); it++)
+	  cout << (*it) << endl;
+
+2. In class, we went over how you will frequently _interact_ with the design pattern Iterator but will rarely implement it yourselves. Why is this?
+
+today structure are already have implement so we don't have to implement it ourselves. 

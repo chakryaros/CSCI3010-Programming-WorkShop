@@ -1,0 +1,144 @@
+PE 14 (course content review)
+==============
+
+Answer the following questions in a text file:  
+Be sure to cite any resources that you use to help answer these questions.
+
+Name:  Chakrya Ros
+
+Section 1: c++ and programming
+
+1. Describe how static fields and static methods work. What makes them different from one another? Are they c++ specific?
+
+- static fields refer to member variables declare as static inside class definitions that shared between all class instances.
+- static method refer to a method declared as static inside a class definition that is meant to be relevant to all instances of a class rather than any specific instance.
+- static fields can be accessed from non-static methods, but static method can't be accessed from non-static field.
+- yes they are specific in c++
+
+2. What is a unit test? When in your development cycle should you write them? How much of your code should you test in a single unit test? Justify your responses.
+
+- Unit test is a test that covers the smallest piece of code base. I should write them during development process to make sure that each function is performing properly. 
+- one small function`
+ 
+
+3. What are some differences between an array and a vector in c++? What might contribute to your decision to use one over the other?
+
+- vector is template class and c++ only construct, but arrays are built in language construct.
+- vector are implemented as dynamic arrays with list interface whereas array can be implemented as statically or dynamically with primitive data type interface.
+- vectors are resizable and arrays' size are fixed.
+- I would use vector because It's easy to allocated on heap memory.
+
+4. If you wanted to create a class Board that could take two arbitrary ints, rows and columns, each being larger than 0, how would you represent that board internally in c++ so that it could be dynamically sized when the Board constructor is called? Copy + Paste your example Board class below.
+
+class Board {
+  public:
+  	Board(int rows, int cols);
+  private:
+  	int rows_;
+  	int cols_;
+	vector<vector<int>>board;
+};
+
+Board::Board(int rows, int cols)
+{
+    rows_ = rows;
+    cols_ = cols;
+    for(int i=0; i<cols_; i++) {
+        vector<int>temp;
+        for(int j=0; j<rows_; j++) {
+             temp.push_back(0);
+	}
+	board.push_back(temp);
+    }    
+}
+
+int main()
+{
+	board1 = new Board(10,11);
+
+}
+
+5. What is inheritance? Why does inheritance allow us to do in object-oriented languages/c++? What does it not allow us to do?
+
+- inheritance allows us to define a class in terms of another class that makes it easier to create and maintain an application.
+- it allow us to do in object-oriented languages/c++ because it allows us to create derived class from an existing class(base class). The derived class inherits all the features from the bass class and we can add additional features of its own.
+- it does not allow us to access directly from private members in the base class 
+
+Section 2: GUIs
+
+1. What happens behind the scenes for a GUI to respond to a user interaction with the user interface?
+
+- the state of its processing and respond to user interface.
+
+2. In Qt, how many signals can a single object emit? How many slots can respond to a single signal? When the slots respond, what order do they respond in? (Justify your answers.)
+
+- many signals can emit a single object and many slots can respond to a single signal but the slots will be executed one after another, in order they have been connected when the signal is emitted.
+
+Section 3: Webservices
+
+1. What does idempotent mean in the context of webservices? What REST endpoints should be idempotent? Why?
+
+- in the context of webservices, when making multiple identical requests has the same effect as making a single request.
+- GET, DELETE, OPTION because we can't call to GET or DELETE the same input.
+
+2. What are two important differences between GET requests and POST requests?
+
+- GET requests can be cashed and used to request data, but POSt requests have no restriction on data length and are never cashed.
+
+3. Give an example API call to a web-API of your choice using CURL.
+
+- curl https://api.forecast.io/forecast/46dba78778fa6c187169f606374fb83d/40.014984,-105.270546'
+
+4. What is a server? What is a webserver? Can server and client code be running on the same physical machine? Why/why not?
+
+- server a a computer, a device or a program that is dedicated to managing network resources.
+- web server is any pieces of software that make itself available over the internet and use standardized XML messaging system.
+- yes server and client code can be running on the same physical machine because I run the server in the terminate to send the request to the web server and use chrome to run my websever.
+
+Section 4: map, reduce, filter/mapreduce
+
+1. Write down the function signatures for the functions that map, reduce, and filter apply to a sequence if you were using a language/framework that applied them in a similar fashion to python.
+//map
+def mutiply_one(x):
+   return x*x
+list_ = [1 ,2 ,3 ,4, 5]
+result_mutiply = map(multiply, list_)
+# output [1, 4, 9, 14, 25]
+
+//reduce
+from functools import reduce
+list1 = [1, 2, 3,4]
+sum = reduce((lambda x, y: x + y), list1)
+#output: 10
+
+
+//filter
+def remove_bigger(y, ls):
+	num = filter(lambda x: x <=y, ls)
+	return list(num) 
+
+
+2. What is Hadoop MapReduce at a high level? Why is it useful? What are the requirements for the map tasks and the reduce tasks?
+
+-MapReduce is designed for processing large volumes of data in parallel by dividing the work into a set of independent tasks. It's useful because it let the programmers to run models over large distributed sets of data and use advanced statistical and machine learning techniques to do predictions and find patters.
+- Map takes key/value pair as input.
+- Reduce takes intermediate key and value pairs as input and process the output of the mapper.
+
+Section 5: final reflections
+
+1. What topic(s) did we cover in this class that you have found most helpful?
+
+GUI, git, inheritance, web server 
+
+2. Was there a topic that you wished we had spent more time on?
+
+- web server 
+
+3. Was there a topic that you wished we had spent less time on?
+
+- no
+
+//help me to answer these question,
+https://www.tutorialspoint.com
+https://www.geeksforgeeks.org/inheritance-in-c/
+https://data-flair.training/blogs/hadoop-mapreduce-tutorial/

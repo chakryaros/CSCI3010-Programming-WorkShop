@@ -1,0 +1,85 @@
+Please work in 2s or 3s!
+
+Name: James McDonald
+Name: Chakrya Ros
+Name: tai pham
+
+Part 1 (bash + file navigation)
+------------------------------
+For all of the following questions, copy and paste the terminal commands that you use to acheive them into this file.
+
+1. Create a directory called "lec5_directory".
+
+mkdir lec5_directory/
+
+2. Change directories into lec5_directory.
+
+cd lec5_directory
+
+3. Create a file called "names.txt".
+
+touch names.txt
+
+4. Use `echo` and `>` and/or `>>` to write the names of you and your partner into the file names.txt.
+
+echo "James Chakrya Tai" > names.txt
+
+5. Create a copy of "names.txt" called "names2.txt".
+
+cp names.txt names2.txt
+
+6. Create a directory called lec5_subdirectory and create a directory within lec5_subdirectory called subsubbasement.
+
+mkdir -p lec5_subdirectory/subsubbasement
+
+7. Move to your subsubbasement directory.
+
+cd lec5_subdirectory/subsubbasement
+
+8. Find your full path.
+
+pwd
+
+9. Without changing directories, move names2.txt to the subsubbasement directory.
+
+mv ../../names2.txt .
+
+10. Move back to your lec5_directory.
+
+cd ../../
+
+11. Create a directory called thisissilly
+
+mkdir thisissilly/
+
+12. Using the `rm` command, remove the thisissilly directory
+
+rm -r thisisislly
+
+13. Run the following code:
+for i in `seq 1 30`; do
+	touch "$i.silly"
+done;
+
+14. List all files in your directory ending in .silly. Use a "*" wildcard with `ls`.
+
+engr2-7-186-dhcp:silly mega$ ls *.silly
+1.silly		12.silly	15.silly	18.silly	20.silly	23.silly	26.silly	29.silly	4.silly		7.silly
+10.silly	13.silly	16.silly	19.silly	21.silly	24.silly	27.silly	3.silly		5.silly		8.silly
+11.silly	14.silly	17.silly	2.silly		22.silly	25.silly	28.silly	30.silly	6.silly		9.silly
+
+15. List all files in your directory between 10.silly and 19.silly (inclusive). Use `ls` with a "?" wildcard (matches 1 single character).
+
+ls 1?.silly
+
+16. Close this file (Really!), then move it into your lec5_directory using the `mv` command.
+
+17. Use the `less` command and the `cat` command on this file. What are the differences?
+
+less opens the file in a closable instance, cat prints the file inline
+
+18. Change directories to the parent directory of lec5_directory.
+
+19. What command will you use to zip up your lec5_directory and all files and subdirectories to produce lec5.zip? (Answer, then do this and turn your zip file in on moodle). You can use `unzip -l lec5.zip` to check the contents of your zip file.
+
+zip -r lec5_directory.zip lec5_directory/

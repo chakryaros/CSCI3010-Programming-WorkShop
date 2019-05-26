@@ -1,0 +1,4 @@
+//Chakrya Ros
+//PE7
+
+2. A signal is emitted when a particular event occurs and a slot is a function that is called in response to a particular signal. They use in Qt Designer that Qt widgets have predefined.
